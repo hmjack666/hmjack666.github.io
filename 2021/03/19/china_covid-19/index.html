@@ -6,17 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | hmjack的个人博客网站</title>
+  <title>中国新冠疫情大数据展示系统 | hmjack的个人博客网站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="hmjack的个人博客网站">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hmjack的个人博客网站">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="项目展示项目花费7天时间完成，页面中实现了六个功能:左侧上下两个功能分别是各地区风险评定等级 和 百度今日热搜，中部上下两个功能分别是总数据展示 和 实时数据地图，右侧上下两个功能分别是各省累计确诊排名 和 今日发生疫情省份统计，这些数据的来源是通过爬虫去各个网站进行爬取，一共爬取的三个网站，接下来我将讲述如何去爬取这六个功能的数据来源，并且会附上源码供大家复制到自己项目中学习。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中国新冠疫情大数据展示系统">
+<meta property="og:url" content="http://example.com/2021/03/19/china_covid-19/index.html">
 <meta property="og:site_name" content="hmjack的个人博客网站">
-<meta property="og:description" content="hmjack的个人博客网站">
+<meta property="og:description" content="项目展示项目花费7天时间完成，页面中实现了六个功能:左侧上下两个功能分别是各地区风险评定等级 和 百度今日热搜，中部上下两个功能分别是总数据展示 和 实时数据地图，右侧上下两个功能分别是各省累计确诊排名 和 今日发生疫情省份统计，这些数据的来源是通过爬虫去各个网站进行爬取，一共爬取的三个网站，接下来我将讲述如何去爬取这六个功能的数据来源，并且会附上源码供大家复制到自己项目中学习。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210315123012368.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2021031909461164.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210319094632397.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210319100205172.jpg#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210319100230764.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210318093008265.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20210318093038765.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-03-19T02:37:02.769Z">
+<meta property="article:modified_time" content="2021-03-19T02:37:02.766Z">
 <meta property="article:author" content="黑马Jack">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210315123012368.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="hmjack的个人博客网站" type="application/atom+xml">
   
@@ -150,103 +160,184 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-china_covid-19" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+	<div align="center" class="post-count">
+字数：2.7k字 | 预计阅读时长：13分钟</div>
+        
   
+    <h1 class="article-title" itemprop="name">
+      中国新冠疫情大数据展示系统
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/19/china_covid-19/" class="archive-article-date">
+
+        
+        <a href="/2021/03/19/china_covid-19/" class="archive-article-date">
   	<time datetime="2021-03-19T02:37:02.769Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-19</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/19/china_covid-19/">中国新冠疫情大数据展示系统</a>
-    </h1>
-  
+        
+	<!-- 文章访问量 -->
+        
+        <span class="archive-article-date">
+        	阅读量:		<span id="busuanzi_value_page_pv"></span>
+       	</span>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>项目展示</strong><br><img src="https://img-blog.csdnimg.cn/20210315123012368.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center" alt="中国新冠疫情大数据展示系统"><br>项目花费7天时间完成，页面中实现了六个功能:左侧上下两个功能分别是<em>各地区风险评定等级</em> 和 <em>百度今日热搜</em>，中部上下两个功能分别是<em>总数据展示</em> 和 <em>实时数据地图</em>，右侧上下两个功能分别是<em>各省累计确诊排名</em> 和 <em>今日发生疫情省份统计</em>，这些数据的来源是通过爬虫去各个网站进行爬取，一共爬取的三个网站，接下来我将讲述如何去爬取这六个功能的数据来源，并且会附上源码供大家复制到自己项目中学习。</p>
+<span id="more"></span>
 
-        <div class="article-info info-on-right">
-          
-          
+<h1 id="python爬虫"><a href="#python爬虫" class="headerlink" title="python爬虫"></a>python爬虫</h1><h2 id="python爬虫爬取网易新闻疫情数据"><a href="#python爬虫爬取网易新闻疫情数据" class="headerlink" title="python爬虫爬取网易新闻疫情数据"></a>python爬虫爬取网易新闻疫情数据</h2><p>咱爬取网易新闻疫情数据的网址如下：<a target="_blank" rel="noopener" href="https://wp.m.163.com/163/page/news/virus_report/index.html?_nw_=1&amp;_anw_=1">https://wp.m.163.com/163/page/news/virus_report/index.html?_nw_=1&amp;_anw_=1</a> ，这个网址返回的是json文件数据，能在F12的Network中查看得到，很方便的可以将json文件处理转换成csv文件。代码如下：</p>
+<h4 id="爬取网易新闻疫情数据放入csv文件中："><a href="#爬取网易新闻疫情数据放入csv文件中：" class="headerlink" title="爬取网易新闻疫情数据放入csv文件中："></a>爬取网易新闻疫情数据放入csv文件中：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">import pandas as pd</span><br><span class="line">import requests</span><br><span class="line">headers&#x3D;&#123;</span><br><span class="line">    &#39;user-agent&#39;:&#39;Mozilla&#x2F;5.0 (Windows NT 10.0; WOW64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;88.0.4324.182 Safari&#x2F;537.36&#39;</span><br><span class="line">&#125;</span><br><span class="line">url&#x3D;&#39;https:&#x2F;&#x2F;c.m.163.com&#x2F;ug&#x2F;api&#x2F;wuhan&#x2F;app&#x2F;data&#x2F;list-total?&#39;</span><br><span class="line">res&#x3D;requests.get(url,headers&#x3D;headers)</span><br><span class="line">import json</span><br><span class="line">data_json&#x3D;json.loads(res.text)</span><br><span class="line">data&#x3D;data_json[&#39;data&#39;]</span><br><span class="line">data_province&#x3D;data[&#39;areaTree&#39;][2][&#39;children&#39;]</span><br><span class="line">print(data_province)</span><br><span class="line">free_data&#x3D;pd.DataFrame(data_province)[[&#39;id&#39;,&#39;lastUpdateTime&#39;,&#39;name&#39;]]</span><br><span class="line">today_data&#x3D;pd.DataFrame([province[&#39;today&#39;] for province in data_province])</span><br><span class="line">total_data&#x3D;pd.DataFrame([province[&#39;total&#39;] for province in data_province])</span><br><span class="line">today_data.columns&#x3D;(&quot;today_&quot;+i for i in today_data.columns)</span><br><span class="line">total_data.columns&#x3D;(&quot;total_&quot;+i for i in total_data.columns)</span><br><span class="line">China_data&#x3D;pd.concat([free_data,today_data,total_data],axis&#x3D;1)</span><br><span class="line">import time</span><br><span class="line"># file_name&#x3D;&#39;今天中国各省&#39;+&#39;_&#39;+time.strftime(&#39;%Y_%m_%d&#39;,time.localtime(time.time()))+&#39;.csv&#39;</span><br><span class="line">file_name&#x3D;&#39;C:&#x2F;Users&#x2F;DELL&#x2F;Desktop&#x2F;machine_learning&#x2F;COVID-19_crawler&#x2F;china_today_data&#39;+&#39;.csv&#39;</span><br><span class="line">China_data.to_csv(file_name,index&#x3D;None,encoding&#x3D;&#39;utf_8_sig&#39;)</span><br><span class="line">print(&quot;中国的各省疫情数据保存成功啦！&quot;)</span><br></pre></td></tr></table></figure>
+<p>代码思路是，获取到网页返回的json数据，我们利用python的类进行数据的处理，得到我们想要的数据。</p>
+<h4 id="接下来是的是将csv文件数据导入mysql中："><a href="#接下来是的是将csv文件数据导入mysql中：" class="headerlink" title="接下来是的是将csv文件数据导入mysql中："></a>接下来是的是将csv文件数据导入mysql中：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">import csv</span><br><span class="line">import codecs</span><br><span class="line"></span><br><span class="line">def get_conn():</span><br><span class="line">    conn &#x3D; pymysql.connect(host&#x3D;&#39;localhost&#39;, port&#x3D;3307, user&#x3D;&#39;root&#39;, passwd&#x3D;&#39;123456&#39;, db&#x3D;&#39;china_covid-19&#39;, charset&#x3D;&#39;utf8&#39;)</span><br><span class="line">    return conn</span><br><span class="line"></span><br><span class="line">def insert(cur, sql, args):</span><br><span class="line">    cur.execute(sql, args)</span><br><span class="line"></span><br><span class="line">def read_csv_to_mysql(filename):</span><br><span class="line">    with codecs.open(filename&#x3D;filename, mode&#x3D;&#39;r&#39;, encoding&#x3D;&#39;utf-8&#39;) as f:</span><br><span class="line">        reader &#x3D; csv.reader(f)</span><br><span class="line">        head &#x3D; next(reader)</span><br><span class="line">        conn &#x3D; get_conn()</span><br><span class="line">        cur &#x3D; conn.cursor()</span><br><span class="line">        sql &#x3D; &#39;insert into china_today_data values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)&#39;</span><br><span class="line">        cur.execute(&quot;Delete from china_today_data where 1&#x3D;1&quot;)</span><br><span class="line">        conn.commit()</span><br><span class="line">        for item in reader:</span><br><span class="line">            args &#x3D; tuple(item)</span><br><span class="line">            insert(cur, sql&#x3D;sql, args&#x3D;args)</span><br><span class="line"></span><br><span class="line">        conn.commit()</span><br><span class="line">        cur.close()</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    read_csv_to_mysql(&#39;C:&#x2F;Users&#x2F;DELL&#x2F;Desktop&#x2F;machine_learning&#x2F;COVID-19_crawler&#x2F;china_today_data.csv&#39;)</span><br></pre></td></tr></table></figure>
 
+<h4 id="我的网易新闻疫情数据的mysql表结构："><a href="#我的网易新闻疫情数据的mysql表结构：" class="headerlink" title="我的网易新闻疫情数据的mysql表结构："></a>我的网易新闻疫情数据的mysql表结构：</h4><p><img src="https://img-blog.csdnimg.cn/2021031909461164.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center" alt="中国今日疫情数据表"><br><img src="https://img-blog.csdnimg.cn/20210319094632397.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center" alt="中国今日数据表结构"><br>中国今日疫情数据表结构是：一共有18个字段，每个字段类型皆为varchar。原因是从csv文件转存进mysql的过程都是默认以varchar的形式。</p>
+<h2 id="python爬虫爬取各地区风险评定等级数据"><a href="#python爬虫爬取各地区风险评定等级数据" class="headerlink" title="python爬虫爬取各地区风险评定等级数据"></a>python爬虫爬取各地区风险评定等级数据</h2><p>咱爬取各地区风险评定等级的网址如下：<a target="_blank" rel="noopener" href="http://www.gd.gov.cn/gdywdt/zwzt/yqfk/content/post_3021711.html">http://www.gd.gov.cn/gdywdt/zwzt/yqfk/content/post_3021711.html</a> ，这个网址的接口稳定不变，我们可以稳定爬取该网站数据，代码如下：</p>
+<h4 id="爬取各地区风险评定等级数据"><a href="#爬取各地区风险评定等级数据" class="headerlink" title="爬取各地区风险评定等级数据"></a>爬取各地区风险评定等级数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">#Python爬取中高风险地区名单代码</span><br><span class="line">import requests</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import pandas as pd</span><br><span class="line"></span><br><span class="line">def getHTML(url):</span><br><span class="line">    try:</span><br><span class="line">        r &#x3D; requests.get(url, timeout&#x3D;30)</span><br><span class="line">        r.raise_for_status()</span><br><span class="line">        r.encoding &#x3D; r.apparent_encoding</span><br><span class="line">        return r.text</span><br><span class="line">    except:</span><br><span class="line">        return &quot;&quot;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def getContent(url):</span><br><span class="line">    html &#x3D; getHTML(url)</span><br><span class="line">    soup &#x3D; BeautifulSoup(html, &#39;html.parser&#39;)</span><br><span class="line">    paras_tmp &#x3D; soup.select(&#39;.zw-title&#39;)+soup.select(&#39;p&#39;)</span><br><span class="line">    paras &#x3D; paras_tmp[0:]</span><br><span class="line">    return paras</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def saveFile(text):</span><br><span class="line"></span><br><span class="line">    # datetimes &#x3D; time.strftime(&quot;%Y-%m-%d&quot;,time.localtime(time.time()))</span><br><span class="line">    fname &#x3D; &quot;C:&#x2F;Users&#x2F;DELL&#x2F;Desktop&#x2F;machine_learning&#x2F;COVID-19_crawler&#x2F;&quot;+r&quot;Webdata.txt&quot;</span><br><span class="line">    f &#x3D; open(fname, &#39;w&#39;)</span><br><span class="line">    for t in text:</span><br><span class="line">        if len(t) &gt; 0:</span><br><span class="line">            f.writelines(t.get_text() + &quot;\n\n&quot;)</span><br><span class="line">    f.close()</span><br><span class="line"></span><br><span class="line">def saveCSV(name,list):</span><br><span class="line">    test &#x3D; pd.DataFrame(columns&#x3D;name, data&#x3D;list)  # 数据有三列，列名分别为one,two,three</span><br><span class="line">    # datetimes &#x3D; time.strftime(&quot;%Y-%m-%d&quot;, time.localtime(time.time()))</span><br><span class="line">    fname &#x3D; &quot;C:&#x2F;Users&#x2F;DELL&#x2F;Desktop&#x2F;machine_learning&#x2F;COVID-19_crawler&#x2F;&quot;+r&quot;list_of_grade_risk_areas.csv&quot;</span><br><span class="line">    test.to_csv(fname, encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    url &#x3D; &#39;http:&#x2F;&#x2F;www.gd.gov.cn&#x2F;gdywdt&#x2F;zwzt&#x2F;yqfk&#x2F;content&#x2F;mpost_3021711.html&#39;</span><br><span class="line">    text &#x3D; getContent(url)</span><br><span class="line">    saveFile(text)</span><br><span class="line"></span><br><span class="line">    # 打开文本文件</span><br><span class="line">    fp &#x3D; open(&#39;C:&#x2F;Users&#x2F;DELL&#x2F;Desktop&#x2F;machine_learning&#x2F;COVID-19_crawler&#x2F;Webdata.txt&#39;, &#39;r&#39;)</span><br><span class="line">    # 使用readlines读取</span><br><span class="line">    lines &#x3D; fp.readlines()</span><br><span class="line"></span><br><span class="line">    ss2 &#x3D; []</span><br><span class="line">    for line in lines:</span><br><span class="line">        # 将读取的每行内容过滤掉换行符,如果不加这个条件，输入的内容中将会添加换行符\n</span><br><span class="line">        line &#x3D; line.strip(&#39;\n&#39;)</span><br><span class="line">        line &#x3D; line.strip(&#39;\u3000&#39;)</span><br><span class="line">        ss &#x3D; line.split(&#39;\n&#39;) # 将每行内容根据&#x3D;分割</span><br><span class="line"></span><br><span class="line">        if(ss !&#x3D; [&#39;&#39;]):</span><br><span class="line">            ss2.append(ss)</span><br><span class="line">    while [] in ss2:</span><br><span class="line">        ss2.remove([&#39;&#39;])</span><br><span class="line">    ss2.pop()</span><br><span class="line">    name&#x3D;[&#39;title&#39;,&#39;high_risk_areas&#39;,&#39;high_areas&#39;,&#39;low_risk_areas&#39;,&#39;low_areas&#39;]</span><br><span class="line">    new_ss2&#x3D;[];</span><br><span class="line">    list&#x3D;[];</span><br><span class="line">    for i in range(0,len(ss2)):</span><br><span class="line">        new_ss2.append(ss2[i][0])</span><br><span class="line">    list.append(new_ss2)</span><br><span class="line">    saveCSV(name,list)</span><br><span class="line">    fp.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">main()</span><br></pre></td></tr></table></figure>
+<p>该爬虫的思路是，直接爬取网页中展示出来的所有HTML内容，再从中筛选出来我们想要的字段。将筛选出来的字段存入txt文件中，接着再从txt文件中读取数据转存进csv文件中。</p>
+<h4 id="接下来是的是将csv文件数据导入mysql中：-1"><a href="#接下来是的是将csv文件数据导入mysql中：-1" class="headerlink" title="接下来是的是将csv文件数据导入mysql中："></a>接下来是的是将csv文件数据导入mysql中：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">import pymysql</span><br><span class="line">import csv</span><br><span class="line">import codecs</span><br><span class="line"></span><br><span class="line">def get_conn():</span><br><span class="line">    conn &#x3D; pymysql.connect(host&#x3D;&#39;localhost&#39;, port&#x3D;3307, user&#x3D;&#39;root&#39;, passwd&#x3D;&#39;123456&#39;, db&#x3D;&#39;china_covid-19&#39;, charset&#x3D;&#39;utf8&#39;)</span><br><span class="line">    return conn</span><br><span class="line"></span><br><span class="line">def insert(cur, sql, args):</span><br><span class="line">    cur.execute(sql, args)</span><br><span class="line"></span><br><span class="line">def read_csv_to_mysql(filename):</span><br><span class="line">    with codecs.open(filename&#x3D;filename, mode&#x3D;&#39;r&#39;, encoding&#x3D;&#39;utf-8&#39;) as f:</span><br><span class="line">        reader &#x3D; csv.reader(f)</span><br><span class="line">        head &#x3D; next(reader)</span><br><span class="line">        conn &#x3D; get_conn()</span><br><span class="line">        cur &#x3D; conn.cursor()</span><br><span class="line">        sql &#x3D; &#39;insert into list_of_grade_risk_areas values(%s,%s,%s,%s,%s,%s)&#39;</span><br><span class="line">        cur.execute(&quot;Delete from list_of_grade_risk_areas where 1&#x3D;1&quot;)</span><br><span class="line">        conn.commit()</span><br><span class="line">        for item in reader:</span><br><span class="line">            args &#x3D; tuple(item)</span><br><span class="line">            insert(cur, sql&#x3D;sql, args&#x3D;args)</span><br><span class="line"></span><br><span class="line">        conn.commit()</span><br><span class="line">        cur.close()</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    read_csv_to_mysql(&#39;C:&#x2F;Users&#x2F;DELL&#x2F;Desktop&#x2F;machine_learning&#x2F;COVID-19_crawler&#x2F;list_of_grade_risk_areas.csv&#39;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="我的各地区风险评定等级的mysql表结构："><a href="#我的各地区风险评定等级的mysql表结构：" class="headerlink" title="我的各地区风险评定等级的mysql表结构："></a>我的各地区风险评定等级的mysql表结构：</h4><p><img src="https://img-blog.csdnimg.cn/20210319100205172.jpg#pic_center" alt="各地区风险评定等级的mysql表"><br><img src="https://img-blog.csdnimg.cn/20210319100230764.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center" alt="各地区风险评定等级的mysql表结构"><br>上面就是我使用爬虫爬取各地区风险评定等级的过程，记录了爬虫爬取数据，以及将数据转换成csv文件存储进mysql中。希望能对你有一些小小的帮助，一起努力一起进步！</p>
+<h2 id="python爬虫爬取百度今日热搜榜"><a href="#python爬虫爬取百度今日热搜榜" class="headerlink" title="python爬虫爬取百度今日热搜榜"></a>python爬虫爬取百度今日热搜榜</h2><p>咱爬百度热搜榜单的网址如下：<a target="_blank" rel="noopener" href="http://top.baidu.com/buzz?b=1&amp;fr=20811%EF%BC%8C%E8%BF%99%E4%B8%AA%E7%BD%91%E5%9D%80%E7%9A%84%E6%8E%A5%E5%8F%A3%E7%A8%B3%E5%AE%9A%E4%B8%8D%E5%8F%98%EF%BC%8C%E5%92%B1%E5%86%99%E5%A5%BD%E4%B8%80%E6%AC%A1%E7%A8%8B%E5%BA%8F%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%AE%89%E7%84%B6%E7%9A%84%E7%88%AC%E5%8F%96%E6%95%B0%E6%8D%AE%E5%B0%B1%E8%A1%8C%E3%80%82%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B%EF%BC%9A">http://top.baidu.com/buzz?b=1&amp;fr=20811，这个网址的接口稳定不变，咱写好一次程序就可以安然的爬取数据就行。代码如下：</a></p>
+<h4 id="爬取百度热搜榜数据放入csv文件中："><a href="#爬取百度热搜榜数据放入csv文件中：" class="headerlink" title="爬取百度热搜榜数据放入csv文件中："></a>爬取百度热搜榜数据放入csv文件中：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"># 爬取百度热搜榜数据放入csv文件中</span><br><span class="line"># 导入相关库</span><br><span class="line">from bs4 import BeautifulSoup</span><br><span class="line">import pandas as pd</span><br><span class="line">import requests</span><br><span class="line">import time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_html(url, headers):</span><br><span class="line">    r &#x3D; requests.get(url, headers&#x3D;headers)</span><br><span class="line">    r.encoding &#x3D; r.apparent_encoding</span><br><span class="line">    return r.text</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_pages(html):</span><br><span class="line">    soup &#x3D; BeautifulSoup(html, &#39;html.parser&#39;)</span><br><span class="line">    all_topics &#x3D; soup.find_all(&#39;tr&#39;)[1:]</span><br><span class="line">    data&#x3D;[];</span><br><span class="line">    for each_topic in all_topics:</span><br><span class="line">        topic_times &#x3D; each_topic.find(&#39;td&#39;, class_&#x3D;&#39;last&#39;)  # 搜索指数</span><br><span class="line">        topic_rank &#x3D; each_topic.find(&#39;td&#39;, class_&#x3D;&#39;first&#39;)  # 排名</span><br><span class="line">        topic_name &#x3D; each_topic.find(&#39;td&#39;, class_&#x3D;&#39;keyword&#39;)  # 标题目</span><br><span class="line">        if topic_rank !&#x3D; None and topic_name !&#x3D; None and topic_times !&#x3D; None:</span><br><span class="line">            topic_rank &#x3D; each_topic.find(&#39;td&#39;, class_&#x3D;&#39;first&#39;).get_text().replace(&#39; &#39;, &#39;&#39;).replace(&#39;\n&#39;, &#39;&#39;)</span><br><span class="line">            topic_name &#x3D; each_topic.find(&#39;td&#39;, class_&#x3D;&#39;keyword&#39;).get_text().replace(&#39; &#39;, &#39;&#39;).replace(&#39;\n&#39;, &#39;&#39;)</span><br><span class="line">            topic_times &#x3D; each_topic.find(&#39;td&#39;, class_&#x3D;&#39;last&#39;).get_text().replace(&#39; &#39;, &#39;&#39;).replace(&#39;\n&#39;, &#39;&#39;)</span><br><span class="line">            # print(&#39;排名：&#123;&#125;，标题：&#123;&#125;，热度：&#123;&#125;&#39;.format(topic_rank,topic_name,topic_times))</span><br><span class="line">            tplt &#x3D; &quot;排名：&#123;0:^4&#125; 标题：&#123;1:&#123;3&#125;^15&#125; 热度：&#123;2:^8&#125;&quot;</span><br><span class="line">            data.append(tplt.format(topic_rank, topic_name, topic_times, chr(12288)))</span><br><span class="line">    test &#x3D; pd.DataFrame(columns&#x3D;[&#39;news&#39;], data&#x3D;data)  # 数据有三列，列名分别为one,two,three</span><br><span class="line">    # datetimes &#x3D; time.strftime(&quot;%Y-%m-%d&quot;, time.localtime(time.time()))</span><br><span class="line">    # fname &#x3D; &quot;.&#x2F;&quot; + datetimes + r&quot;baidu_hot_search.csv&quot;</span><br><span class="line">    fname &#x3D; &quot;C:&#x2F;Users&#x2F;DELL&#x2F;Desktop&#x2F;machine_learning&#x2F;COVID-19_crawler&#x2F;&quot; + r&quot;baidu_hot_search.csv&quot;</span><br><span class="line">    test.to_csv(fname, encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    # 百度热点排行榜单链接</span><br><span class="line">    url &#x3D; &#39;http:&#x2F;&#x2F;top.baidu.com&#x2F;buzz?b&#x3D;1&amp;fr&#x3D;20811&#39;</span><br><span class="line">    headers &#x3D; &#123;&#39;User-Agent&#39;: &#39;Mozilla&#x2F;5.0 (Windows NT 10.0; WOW64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;88.0.4324.182 Safari&#x2F;537.36&#39;&#125;</span><br><span class="line">    html &#x3D; get_html(url, headers)</span><br><span class="line">    get_pages(html)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<p>代码的思路是，先爬取到网页上的数据，将其转换成json格式，然后将json格式的数据转存进csv文件中，csv文件可以很方便的导入mysql中使csv文件数据能够直接变成mysql数据库数据。</p>
+<h4 id="接下来是的是将csv文件数据导入mysql中：-2"><a href="#接下来是的是将csv文件数据导入mysql中：-2" class="headerlink" title="接下来是的是将csv文件数据导入mysql中："></a>接下来是的是将csv文件数据导入mysql中：</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#将csv文件导入到mysql中</span><br><span class="line">import pymysql</span><br><span class="line">import csv</span><br><span class="line">import codecs</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_conn():</span><br><span class="line">    conn &#x3D; pymysql.connect(host&#x3D;&#39;localhost&#39;, port&#x3D;3307, user&#x3D;&#39;root&#39;, passwd&#x3D;&#39;123456&#39;, db&#x3D;&#39;china_covid-19&#39;, charset&#x3D;&#39;utf8&#39;)</span><br><span class="line">    return conn</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def insert(cur, sql, args):</span><br><span class="line">    cur.execute(sql, args)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def read_csv_to_mysql(filename):</span><br><span class="line">    with codecs.open(filename&#x3D;filename, mode&#x3D;&#39;r&#39;, encoding&#x3D;&#39;utf-8&#39;) as f:</span><br><span class="line">        reader &#x3D; csv.reader(f)</span><br><span class="line">        head &#x3D; next(reader)</span><br><span class="line">        conn &#x3D; get_conn()</span><br><span class="line">        cur &#x3D; conn.cursor()</span><br><span class="line">        sql &#x3D; &#39;insert into baidu_hot_search values(%s,%s)&#39;</span><br><span class="line">        cur.execute(&quot;Delete from baidu_hot_search where 1&#x3D;1&quot;)</span><br><span class="line">        conn.commit()</span><br><span class="line">        for item in reader:</span><br><span class="line">            args &#x3D; tuple(item)</span><br><span class="line">            insert(cur, sql&#x3D;sql, args&#x3D;args)</span><br><span class="line"></span><br><span class="line">        conn.commit()</span><br><span class="line">        cur.close()</span><br><span class="line">        conn.close()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    read_csv_to_mysql(&#39;C:&#x2F;Users&#x2F;DELL&#x2F;Desktop&#x2F;machine_learning&#x2F;COVID-19_crawler&#x2F;baidu_hot_search.csv&#39;)</span><br></pre></td></tr></table></figure>
+<h4 id="我的百度热搜榜的mysql表结构："><a href="#我的百度热搜榜的mysql表结构：" class="headerlink" title="我的百度热搜榜的mysql表结构："></a>我的百度热搜榜的mysql表结构：</h4><p><img src="https://img-blog.csdnimg.cn/20210318093008265.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center" alt="百度热搜榜mysql表结构1"><br><img src="https://img-blog.csdnimg.cn/20210318093038765.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L20wXzQ2OTkxMzg4,size_16,color_FFFFFF,t_70#pic_center" alt="百度热搜mysql表结构2"><br>至此我介绍了编写爬虫去爬取百度热搜榜的数据并将其放入csv文件中，还介绍了如何将csv文件数据存储进mysql中，你的mysql表结构都建成跟我一样的才能够实现数据的导入，不然你得修改代码才能够实现导入。希望我能为你解惑，感谢你的阅读！</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><p>本篇文章中介绍了如何利用爬虫爬取网页数据，并且将其放入mysql数据库中。中国新冠疫情大数据展示系统我后端我利用的技术是php，前端我是用的是jquery+Echarts进行大屏展示，前后端交互我使用的是ajax。上面的代码足够你爬到想要的数据了，后端你还可以选择JAVA之类的来实现，数据就是石油，有了石油，小车就靠你们自己去造了！希望本篇文章能对你有小小的帮助，我是黑马Jack，编程这条路上我们一起披荆斩棘，不断前进！<br>                                                                                      - -黑马Jack</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/03/19/china_covid-19/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/06/Day01/" class="archive-article-date">
-  	<time datetime="2021-03-06T09:44:26.090Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/03/06/Day01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">我的第一篇文章呀</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/06/Day01/">我的第一篇文章呀</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/03/06/hello-world/" class="archive-article-date">
-  	<time datetime="2021-03-06T09:43:19.502Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/03/06/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -279,8 +370,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
